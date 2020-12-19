@@ -1,14 +1,15 @@
-'use strict';
-
 import { Service } from 'egg';
 import { CreateOptions } from 'sequelize';
 
 class User extends Service {
-  async list({ offset = 0, limit = 10 }: { offset: number; limit: number; }) {
+  async list({ offset = 0, limit = 10 }: { offset: number; limit: number }) {
     return this.ctx.model.User.findAndCountAll({
       offset,
       limit,
-      order: [[ 'created_at', 'desc' ], [ 'id', 'desc' ]],
+      order: [
+        ['created_at', 'desc'],
+        ['id', 'desc'],
+      ],
     });
   }
 

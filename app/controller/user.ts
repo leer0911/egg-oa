@@ -1,5 +1,3 @@
-'use strict';
-
 import { Controller } from 'egg';
 
 export default class UserController extends Controller {
@@ -38,4 +36,3 @@ export default class UserController extends Controller {
     ctx.status = 200;
   }
 }
-

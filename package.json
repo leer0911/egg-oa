@@ -20,7 +20,8 @@
     "autod": "autod",
     "lint": "eslint . --ext .ts",
     "clean": "ets clean",
-    "sequelize": "sequelize --"
+    "sequelize": "sequelize --",
+    "migrate": "sequelize db:migrate"
   },
   "dependencies": {
     "egg": "^2.6.1",

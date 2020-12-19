@@ -4,4 +4,4 @@ export default {
     if (!str) return 0;
     return parseInt(str) || 0;
   },
-}
+};
