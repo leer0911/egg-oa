@@ -8,8 +8,8 @@ export default function (app: Application) {
       primaryKey: true,
       autoIncrement: true,
     },
-    name: STRING(30),
-    age: INTEGER,
+    username: STRING(30),
+    password: INTEGER,
     created_at: DATE(6),
     updated_at: DATE(6),
   });

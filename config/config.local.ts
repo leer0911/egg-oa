@@ -10,10 +10,5 @@ export default () => {
     port: 3306,
     database: 'oa',
   };
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  };
   return config;
 };

@@ -1,7 +1,7 @@
 import { Service } from 'egg';
 import { CreateOptions } from 'sequelize';
 
-class User extends Service {
+export default class User extends Service {
   async list({ offset = 0, limit = 10 }: { offset: number; limit: number }) {
     return this.ctx.model.User.findAndCountAll({
       offset,
@@ -41,5 +41,3 @@ class User extends Service {
     return user!.destroy();
   }
 }
-
-module.exports = User;

@@ -13,6 +13,18 @@ export default (appInfo: EggAppInfo) => {
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
+    security: {
+      csrf: {
+        enable: false, // 先关闭 CSRF
+      },
+    },
+    cors: {
+      origin: '*',
+      allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    },
+    jwt: {
+      secret: 'secret',
+    },
   };
 
   // the return config will combines to EggAppConfig
