@@ -2,12 +2,12 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportAccount from '../../../app/controller/account';
 import ExportUser from '../../../app/controller/user';
+import ExportUserAccess from '../../../app/controller/userAccess';
 
 declare module 'egg' {
   interface IController {
-    account: ExportAccount;
     user: ExportUser;
+    userAccess: ExportUserAccess;
   }
 }

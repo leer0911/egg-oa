@@ -5,7 +5,6 @@ module.exports = {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       username: STRING(30),
       password: STRING,
-      roleIds: ['id'],
       created_at: DATE(6),
       updated_at: DATE(6),
     });

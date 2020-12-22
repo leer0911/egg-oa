@@ -1,6 +1,14 @@
 import { Service } from 'egg';
 import { CreateOptions } from 'sequelize';
 
+export interface IUser {
+  id: number;
+  username: string;
+  password: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export default class User extends Service {
   async list({ offset = 0, limit = 10 }: { offset: number; limit: number }) {
     return this.ctx.model.User.findAndCountAll({

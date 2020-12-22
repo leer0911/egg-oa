@@ -1,7 +1,12 @@
 import { Application } from 'egg';
 
 export default function (app: Application) {
-  app.post('/account/login', app.controller.account.login);
-  app.resources('users', '/users', app.jwt, app.controller.user);
-  app.resources('roles', '/roles', app.jwt, app.controller.user);
+  const { router, controller } = app;
+
+  router.post('/api/user/access/login', controller.userAccess.login);
+  router.get('/api/user/access/current', app.jwt, controller.userAccess.current);
+  router.get('/api/user/access/logout', controller.userAccess.logout);
+
+  app.resources('user', '/api/user', app.jwt, app.controller.user);
+  // app.resources('role', '/api/role', app.jwt, app.controller.user);
 }
