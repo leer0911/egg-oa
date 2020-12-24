@@ -6,7 +6,15 @@ export default {
   },
   success({ ctx, res, msg = '请求成功' }: { ctx: any; res?: any; msg?: string }) {
     ctx.body = {
-      code: 200,
+      status: 'ok',
+      data: res,
+      msg,
+    };
+    ctx.status = 200;
+  },
+  error({ ctx, res, msg = '请求失败' }: { ctx: any; res?: any; msg?: string }) {
+    ctx.body = {
+      status: 'error',
       data: res,
       msg,
     };

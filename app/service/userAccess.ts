@@ -4,18 +4,11 @@ export default class UserAccessService extends Service {
   async login({ username = '', password = '' }) {
     const user = await this.ctx.model.User.findOne({ where: { username, password } });
     if (!user) {
-      this.ctx.throw(404, '用户名或密码错误');
+      this.ctx.helper.error({ ctx: this.ctx, msg: '用户名或密码错误' });
+      return null;
     }
-    const token = this.app.jwt.sign(
-      {
-        data: {
-          id: (user as any).id,
-        },
-        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
-      },
-      this.app.config.jwt.secret,
-    );
-    return token!;
+
+    return user!;
   }
 
   async logout() {
@@ -24,11 +17,11 @@ export default class UserAccessService extends Service {
 
   async current() {
     const { ctx, service } = this;
-    console.log(ctx.state);
-    const user = await service.user.find(1);
-    if (!user) {
+    const { user = {} } = ctx.state;
+    const userInfo = await service.user.find(user.id);
+    if (!userInfo) {
       ctx.throw(404, 'user is not found');
     }
-    return user;
+    return userInfo;
   }
 }

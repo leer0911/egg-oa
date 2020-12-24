@@ -13,6 +13,10 @@ export default class UserAccessController extends Controller {
     const data = ctx.request.body;
     const res: any = await ctx.service.userAccess.login(data);
 
+    if (!res) {
+      return;
+    }
+
     const token = app.jwt.sign(
       {
         id: res.id,
@@ -20,14 +24,15 @@ export default class UserAccessController extends Controller {
       app.config.jwt.secret,
     );
 
-    ctx.body = token;
+    ctx.cookies.set('Authorization', token, { httpOnly: false });
+    ctx.helper.success({ ctx, res: token });
   }
 
   // 获取当前用户信息
   async current() {
     const { ctx, service } = this;
     const res = await service.userAccess.current();
-    ctx.helper.success({ ctx, res });
+    ctx.body = res;
   }
 
   async logout() {
